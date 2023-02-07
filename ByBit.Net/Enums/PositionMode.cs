@@ -10,12 +10,8 @@
         /// </summary>
         OneWay,
         /// <summary>
-        /// Buy side of both side mode
+        /// Hedge Mode
         /// </summary>
-        BothSideBuy,
-        /// <summary>
-        /// Sell side of both side mode
-        /// </summary>
-        BothSideSell
+        Hedge
     }
 }

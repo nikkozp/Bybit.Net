@@ -38,7 +38,7 @@ namespace Bybit.Net.Objects.Models
         /// <summary>
         /// Base quantity filled
         /// </summary>
-        public abstract decimal? BaseQuantityFilled { get; set; }
+        public abstract decimal? QuantityFilled { get; set; }
         /// <summary>
         /// Fee paid
         /// </summary>
@@ -95,7 +95,7 @@ namespace Bybit.Net.Objects.Models
 
         /// <inheritdoc />
         [JsonProperty("cum_exec_qty")]
-        public override decimal? BaseQuantityFilled { get; set; }
+        public override decimal? QuantityFilled { get; set; }
     }
 
     /// <inheritdoc />
@@ -107,7 +107,7 @@ namespace Bybit.Net.Objects.Models
 
         /// <inheritdoc />
         [JsonProperty("cum_exec_value")]
-        public override decimal? BaseQuantityFilled { get; set; }
+        public override decimal? QuantityFilled { get; set; }
     }
 
 }

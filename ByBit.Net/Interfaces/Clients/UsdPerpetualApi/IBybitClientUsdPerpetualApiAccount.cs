@@ -23,7 +23,7 @@ namespace Bybit.Net.Interfaces.Clients.UsdPerpetualApi
         /// <param name="receiveWindow">The receive window for which this request is active. When the request takes longer than this to complete the server will reject the request</param>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
-        Task<WebCallResult<IEnumerable<BybitRiskLimit>>> GetRiskLimitAsync(string symbol, long? receiveWindow = null, CancellationToken ct = default);
+        Task<WebCallResult<IEnumerable<BybitRiskLimit>>> GetRiskLimitAsync(string? symbol = null, long? receiveWindow = null, CancellationToken ct = default);
 
         /// <summary>
         /// Set position risk
@@ -32,11 +32,11 @@ namespace Bybit.Net.Interfaces.Clients.UsdPerpetualApi
         /// <param name="symbol">The symbol</param>
         /// <param name="riskId">The risk id to set</param>
         /// <param name="side">Side</param>
-        /// <param name="positionMode">Position mode</param>
+        /// <param name="positionModeIdx">Position mode idx</param>
         /// <param name="receiveWindow">The receive window for which this request is active. When the request takes longer than this to complete the server will reject the request</param>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
-        Task<WebCallResult<BybitRiskId>> SetRiskLimitAsync(string symbol, OrderSide side, long riskId, PositionMode? positionMode = null, long? receiveWindow = null, CancellationToken ct = default);
+        Task<WebCallResult<BybitRiskId>> SetRiskLimitAsync(string symbol, OrderSide side, long riskId, PositionModeIdx? positionModeIdx = null, long? receiveWindow = null, CancellationToken ct = default);
 
         #endregion
 
@@ -49,15 +49,7 @@ namespace Bybit.Net.Interfaces.Clients.UsdPerpetualApi
         /// <param name="receiveWindow">The receive window for which this request is active. When the request takes longer than this to complete the server will reject the request</param>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
-        Task<WebCallResult<IEnumerable<BybitPositionUsd>>> GetPositionAsync(string symbol, long? receiveWindow = null, CancellationToken ct = default);
-        /// <summary>
-        /// Get user positions
-        /// <para><a href="https://bybit-exchange.github.io/docs/futuresV2/linear/#t-myposition" /></para>
-        /// </summary>
-        /// <param name="receiveWindow">The receive window for which this request is active. When the request takes longer than this to complete the server will reject the request</param>
-        /// <param name="ct">Cancellation token</param>
-        /// <returns></returns>
-        Task<WebCallResult<IEnumerable<BybitPositionUsd>>> GetPositionsAsync(long? receiveWindow = null, CancellationToken ct = default);
+        Task<WebCallResult<IEnumerable<BybitPositionUsd>>> GetPositionsAsync(string? symbol = null, long? receiveWindow = null, CancellationToken ct = default);
 
         /// <summary>
         /// Set auto add margin switch
@@ -66,11 +58,11 @@ namespace Bybit.Net.Interfaces.Clients.UsdPerpetualApi
         /// <param name="symbol">Symbol</param>
         /// <param name="side">Side</param>
         /// <param name="autoAddMargin">Auto add or not</param>
-        /// <param name="positionMode">Position mode</param>
+        /// <param name="positionModeIdx">Position mode idx</param>
         /// <param name="receiveWindow">The receive window for which this request is active. When the request takes longer than this to complete the server will reject the request</param>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
-        Task<WebCallResult> SetAutoAddMarginAsync(string symbol, OrderSide side, bool autoAddMargin, PositionMode? positionMode = null, long? receiveWindow = null, CancellationToken ct = default);
+        Task<WebCallResult> SetAutoAddMarginAsync(string symbol, OrderSide side, bool autoAddMargin, PositionModeIdx? positionModeIdx = null, long? receiveWindow = null, CancellationToken ct = default);
 
         /// <summary>
         /// Switch Cross/Isolated; must set leverage value when switching from Cross to Isolated
@@ -96,7 +88,7 @@ namespace Bybit.Net.Interfaces.Clients.UsdPerpetualApi
         /// <param name="receiveWindow">The receive window for which this request is active. When the request takes longer than this to complete the server will reject the request</param>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
-        Task<WebCallResult> SetPositionModeAsync(string symbol, string asset, bool hedgeMode, long? receiveWindow = null, CancellationToken ct = default);
+        Task<WebCallResult> SetPositionModeAsync(PositionMode hedgeMode, string? symbol = null, string? asset = null, long? receiveWindow = null, CancellationToken ct = default);
 
         /// <summary>
         /// Switch between full or partial Stop loss/Take profit mode
@@ -115,11 +107,11 @@ namespace Bybit.Net.Interfaces.Clients.UsdPerpetualApi
         /// <param name="symbol">The symbol</param>
         /// <param name="side">The side</param>
         /// <param name="margin">Margin to add (positive) or remove (negative)</param>
-        /// <param name="positionMode">Position mode</param>
+        /// <param name="positionModeIdx">Position mode idx</param>
         /// <param name="receiveWindow">The receive window for which this request is active. When the request takes longer than this to complete the server will reject the request</param>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
-        Task<WebCallResult<BybitMarginResult>> AddReduceMarginAsync(string symbol, OrderSide side, decimal margin, PositionMode? positionMode = null, long? receiveWindow = null, CancellationToken ct = default);
+        Task<WebCallResult<BybitMarginResult>> AddReduceMarginAsync(string symbol, OrderSide side, decimal margin, PositionModeIdx? positionModeIdx = null, long? receiveWindow = null, CancellationToken ct = default);
 
         /// <summary>
         /// Set leverage

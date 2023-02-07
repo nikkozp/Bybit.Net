@@ -40,16 +40,16 @@ namespace Bybit.Net.Objects.Models
         /// </summary>
         [JsonProperty("is_lowest_risk")]
         public bool IsLowestRisk { get; set; }
-        /// <summary>
-        /// Create time
-        /// </summary>
-        [JsonProperty("created_at")]
-        public DateTime CreateTime { get; set; }
-        /// <summary>
-        /// Update time
-        /// </summary>
-        [JsonProperty("updated_at")]        
-        public DateTime UpdateTime { get; set; }
+        ///// <summary>
+        ///// Create time
+        ///// </summary>
+        //[JsonProperty("created_at")]
+        //public DateTime CreateTime { get; set; }
+        ///// <summary>
+        ///// Update time
+        ///// </summary>
+        //[JsonProperty("updated_at")]        
+        //public DateTime UpdateTime { get; set; }
         /// <summary>
         /// Max leverage
         /// </summary>

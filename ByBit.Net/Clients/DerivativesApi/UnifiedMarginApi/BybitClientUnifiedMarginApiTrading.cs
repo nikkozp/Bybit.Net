@@ -30,7 +30,7 @@ namespace Bybit.Net.Clients.DerivativesApi.UnifiedMarginApi
         #region Place order
 
         /// <inheritdoc />
-        public async Task<WebCallResult<BybitDerivativesOrderId>> PlaceOrderAsync(Category category, string symbol, OrderSide side, OrderType type, decimal quantity, TimeInForce timeInForce, decimal? price = null, decimal? basePrice = null, decimal? triggerPrice = null, PositionMode? positionMode = null, TriggerType? triggerType = null, decimal? iv = null, string? clientOrderId = null, decimal? takeProfitPrice = null, decimal? stopLossPrice = null, TriggerType? takeProfitTriggerType = null, TriggerType? stopLossTriggerType = null, bool? reduceOnly = null, bool? closeOnTrigger = null, bool? marketMakerProtection = null, long? receiveWindow = null, CancellationToken ct = default)
+        public async Task<WebCallResult<BybitDerivativesOrderId>> PlaceOrderAsync(Category category, string symbol, OrderSide side, OrderType type, decimal quantity, TimeInForce timeInForce, decimal? price = null, decimal? basePrice = null, decimal? triggerPrice = null, PositionModeIdx? positionModeIdx = null, TriggerType? triggerType = null, decimal? iv = null, string? clientOrderId = null, decimal? takeProfitPrice = null, decimal? stopLossPrice = null, TriggerType? takeProfitTriggerType = null, TriggerType? stopLossTriggerType = null, bool? reduceOnly = null, bool? closeOnTrigger = null, bool? marketMakerProtection = null, long? receiveWindow = null, CancellationToken ct = default)
         {
             var parameters = new Dictionary<string, object>()
             {
@@ -46,7 +46,7 @@ namespace Bybit.Net.Clients.DerivativesApi.UnifiedMarginApi
             parameters.AddOptionalParameter("basePrice", basePrice?.ToString(CultureInfo.InvariantCulture));
             parameters.AddOptionalParameter("triggerPrice", triggerPrice?.ToString(CultureInfo.InvariantCulture));
 
-            parameters.AddOptionalParameter("positionIdx", positionMode == null ? null : JsonConvert.SerializeObject(positionMode, new PositionModeConverter(false)));
+            parameters.AddOptionalParameter("positionIdx", positionModeIdx == null ? null : JsonConvert.SerializeObject(positionModeIdx, new PositionModeIdxConverter(false)));
             parameters.AddOptionalParameter("triggerBy", triggerType == null ? null : JsonConvert.SerializeObject(triggerType, new TriggerTypeConverter(false)));
 
             parameters.AddOptionalParameter("iv", iv?.ToString(CultureInfo.InvariantCulture));

@@ -26,7 +26,7 @@ namespace Bybit.Net.Objects.Models.Contract
         /// <summary>
         /// Position idx, used to identify positions in different position modes
         /// </summary>
-        [JsonProperty("positionIdx"), JsonConverter(typeof(PositionModeConverter))]
-        public PositionMode? PositionMode { get; set; }
+        [JsonProperty("positionIdx"), JsonConverter(typeof(PositionModeIdxConverter))]
+        public PositionModeIdx? PositionMode { get; set; }
     }
 }

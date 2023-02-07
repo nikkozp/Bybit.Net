@@ -26,12 +26,12 @@ namespace Bybit.Net.Objects.Models
         /// Base currency of the symbol
         /// </summary>
         [JsonProperty("base_currency")]
-        public string BaseCurrency { get; set; } = string.Empty;
+        public string BaseAsset { get; set; } = string.Empty;
         /// <summary>
         /// Quote currency of the symbol
         /// </summary>
         [JsonProperty("quote_currency")]
-        public string QuoteCurrency { get; set; } = string.Empty;
+        public string QuoteAsset { get; set; } = string.Empty;
         /// <summary>
         /// Price precision (amount of decimals)
         /// </summary>

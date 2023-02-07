@@ -53,12 +53,12 @@ namespace Bybit.Net.Objects.Models
         /// The estimated value corresponding to the number of remaining orders
         /// </summary>
         [JsonProperty("leaves_value")]
-        public decimal? LeavesValue { get; set; }
+        public decimal? QuoteQunatityNotFilled { get; set; }
         /// <summary>
         /// Number of unfilled contracts from the order's size
         /// </summary>
         [JsonProperty("leaves_qty")]
-        public decimal? LeavesQuantity { get; set; }
+        public decimal? QunatityNotFilled { get; set; }
         /// <summary>
         /// Creation time
         /// </summary>

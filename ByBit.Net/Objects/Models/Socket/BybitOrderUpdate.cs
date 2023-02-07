@@ -39,7 +39,7 @@ namespace Bybit.Net.Objects.Models.Socket
         /// Base quantity filled
         /// </summary>
         [JsonProperty("cum_exec_qty")]
-        public abstract decimal? BaseQuantityFilled { get; set; }
+        public abstract decimal? QuantityFilled { get; set; }
         /// <summary>
         /// Fee paid
         /// </summary>
@@ -89,9 +89,9 @@ namespace Bybit.Net.Objects.Models.Socket
         /// <summary>
         /// Position mode (only availaable on USD perpetual)
         /// </summary>
-        [JsonConverter(typeof(PositionModeConverter))]
+        [JsonConverter(typeof(PositionModeIdxConverter))]
         [JsonProperty("position_idx")]
-        public PositionMode? PositionMode { get; set; }
+        public PositionModeIdx? PositionModeIdx { get; set; }
     }
 
     /// <inheritdoc />
@@ -103,7 +103,7 @@ namespace Bybit.Net.Objects.Models.Socket
 
         /// <inheritdoc />
         [JsonProperty("cum_exec_qty")]
-        public override decimal? BaseQuantityFilled { get; set; }
+        public override decimal? QuantityFilled { get; set; }
     }
 
     /// <inheritdoc />
@@ -115,6 +115,6 @@ namespace Bybit.Net.Objects.Models.Socket
 
         /// <inheritdoc />
         [JsonProperty("cum_exec_value")]
-        public override decimal? BaseQuantityFilled { get; set; }
+        public override decimal? QuantityFilled { get; set; }
     }
 }

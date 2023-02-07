@@ -39,12 +39,12 @@ namespace Bybit.Net.Clients.CopyTradingApi
         #region Close Position
 
         /// <inheritdoc />
-        public async Task<WebCallResult> ClosePositionAsync(string symbol, PositionMode positionMode, CancellationToken ct = default)
+        public async Task<WebCallResult> ClosePositionAsync(string symbol, PositionModeIdx positionModeIdx, CancellationToken ct = default)
         {
             var parameters = new Dictionary<string, object>()
             {
                 { "symbol", symbol },
-                { "positionIdx", JsonConvert.SerializeObject(positionMode, new PositionModeConverter(false)) }
+                { "positionIdx", JsonConvert.SerializeObject(positionModeIdx, new PositionModeIdxConverter(false)) }
             };
             var result = await _baseClient.SendRequestAsync<object>(_baseClient.GetUrl("contract/v3/private/copytrading/position/close"), HttpMethod.Post, ct, parameters, true).ConfigureAwait(false);
             return result.AsDataless();

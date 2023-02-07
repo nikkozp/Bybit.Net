@@ -27,7 +27,8 @@ namespace Bybit.Net.Objects.Models
         /// Side
         /// </summary>
         [JsonConverter(typeof(PositionSideConverter))]
-        public PositionSide Side { get; set; }
+        [JsonProperty("side")]
+        public PositionSide PositionSide { get; set; }
         /// <summary>
         /// Quantity
         /// </summary>
@@ -37,7 +38,7 @@ namespace Bybit.Net.Objects.Models
         /// Value
         /// </summary>
         [JsonProperty("position_value")]
-        public decimal PositionValue { get; set; }
+        public decimal QuoteQuantity { get; set; }
         /// <summary>
         /// Average entry price
         /// </summary>
@@ -100,9 +101,15 @@ namespace Bybit.Net.Objects.Models
         [JsonProperty("cum_realised_pnl")]
         public decimal TotalRealizedPnl { get; set; }
         /// <summary>
+        /// Position mode id
+        /// </summary>
+        [JsonProperty("position_idx"), JsonConverter(typeof(PositionModeIdxConverter))]
+        public PositionModeIdx PositionModeIdx { get; set; }
+
+        /// <summary>
         /// Position mode
         /// </summary>
-        [JsonProperty("position_idx"), JsonConverter(typeof(PositionModeConverter))]
+        [JsonProperty("mode"), JsonConverter(typeof(PositionModeConverter))]
         public PositionMode PositionMode { get; set; }
     }
 }

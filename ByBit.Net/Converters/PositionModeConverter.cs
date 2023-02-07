@@ -11,9 +11,8 @@ namespace Bybit.Net.Converters
 
         protected override List<KeyValuePair<PositionMode, string>> Mapping => new List<KeyValuePair<PositionMode, string>>
         {
-            new KeyValuePair<PositionMode, string>(PositionMode.OneWay, "0"),
-            new KeyValuePair<PositionMode, string>(PositionMode.BothSideBuy, "1"),
-            new KeyValuePair<PositionMode, string>(PositionMode.BothSideSell, "2"),
+            new KeyValuePair<PositionMode, string>(PositionMode.OneWay, "MergedSingle"),
+            new KeyValuePair<PositionMode, string>(PositionMode.Hedge, "BothSide")
         };
     }
 }

@@ -30,7 +30,7 @@ namespace Bybit.Net.Clients.DerivativesApi.ContractApi
         #region PlaceOrderAsync
 
         /// <inheritdoc />
-        public async Task<WebCallResult<BybitDerivativesOrderId>> PlaceOrderAsync(string symbol, OrderSide side, OrderType type, decimal quantity, TimeInForce timeInForce, bool? reduceOnly = null, bool? closeOnTrigger = null, decimal? price = null, string? clientOrderId = null, decimal? takeProfitPrice = null, decimal? stopLossPrice = null, TriggerType? takeProfitTriggerType = null, TriggerType? stopLossTriggerType = null, PositionMode? positionMode = null, long? receiveWindow = null, CancellationToken ct = default)
+        public async Task<WebCallResult<BybitDerivativesOrderId>> PlaceOrderAsync(string symbol, OrderSide side, OrderType type, decimal quantity, TimeInForce timeInForce, bool? reduceOnly = null, bool? closeOnTrigger = null, decimal? price = null, string? clientOrderId = null, decimal? takeProfitPrice = null, decimal? stopLossPrice = null, TriggerType? takeProfitTriggerType = null, TriggerType? stopLossTriggerType = null, PositionModeIdx? positionModeIdx = null, long? receiveWindow = null, CancellationToken ct = default)
         {
             var parameters = new Dictionary<string, object>()
             {
@@ -42,7 +42,7 @@ namespace Bybit.Net.Clients.DerivativesApi.ContractApi
             };
 
             parameters.AddOptionalParameter("price", price?.ToString(CultureInfo.InvariantCulture));
-            parameters.AddOptionalParameter("positionIdx", positionMode == null ? null : JsonConvert.SerializeObject(positionMode, new PositionModeConverter(false)));
+            parameters.AddOptionalParameter("positionIdx", positionModeIdx == null ? null : JsonConvert.SerializeObject(positionModeIdx, new PositionModeIdxConverter(false)));
 
             parameters.AddOptionalParameter("orderLinkId", clientOrderId);
             parameters.AddOptionalParameter("takeProfit", takeProfitPrice?.ToString(CultureInfo.InvariantCulture));
@@ -169,7 +169,7 @@ namespace Bybit.Net.Clients.DerivativesApi.ContractApi
             parameters.AddOptionalParameter("orderId", orderId);
             parameters.AddOptionalParameter("orderLinkId", clientOrderId);
             parameters.AddOptionalParameter("orderFilter", orderFilter == null ? null : EnumConverter.GetString(orderFilter));
-
+            parameters.AddOptionalParameter("settleCoin", settleAsset);
             parameters.AddOptionalParameter("limit", limit?.ToString(CultureInfo.InvariantCulture));
             parameters.AddOptionalParameter("cursor", cursor);
             parameters.AddOptionalParameter("recv_window", receiveWindow?.ToString(CultureInfo.InvariantCulture) ?? _baseClient.ClientOptions.ReceiveWindow.TotalMilliseconds.ToString(CultureInfo.InvariantCulture));
@@ -182,7 +182,7 @@ namespace Bybit.Net.Clients.DerivativesApi.ContractApi
         #region SetTradingStop
 
         /// <inheritdoc />
-        public async Task<WebCallResult> SetTradingStop(string symbol, decimal? takeProfitPrice = null, decimal? stopLossPrice = null, decimal? activePrice = null, decimal? trailingStop = null, TriggerType? takeProfitTriggerType = null, TriggerType? stopLossTriggerType = null, decimal? stopLossSize = null, decimal? takeProfitSize = null, PositionMode? positionMode = null, long? receiveWindow = null, CancellationToken ct = default)
+        public async Task<WebCallResult> SetTradingStop(string symbol, decimal? takeProfitPrice = null, decimal? stopLossPrice = null, decimal? activePrice = null, decimal? trailingStop = null, TriggerType? takeProfitTriggerType = null, TriggerType? stopLossTriggerType = null, decimal? stopLossSize = null, decimal? takeProfitSize = null, PositionModeIdx? positionModeIdx = null, long? receiveWindow = null, CancellationToken ct = default)
         {
             var parameters = new Dictionary<string, object>()
             {
@@ -193,11 +193,11 @@ namespace Bybit.Net.Clients.DerivativesApi.ContractApi
             parameters.AddOptionalParameter("stopLoss", stopLossPrice?.ToString(CultureInfo.InvariantCulture));
             parameters.AddOptionalParameter("activePrice", activePrice?.ToString(CultureInfo.InvariantCulture));
             parameters.AddOptionalParameter("trailingStop", trailingStop?.ToString(CultureInfo.InvariantCulture));
-            parameters.AddOptionalParameter("tpTriggerBy", positionMode == null ? null : JsonConvert.SerializeObject(takeProfitTriggerType, new TriggerTypeConverter(false)));
-            parameters.AddOptionalParameter("slTriggerBy", positionMode == null ? null : JsonConvert.SerializeObject(stopLossTriggerType, new TriggerTypeConverter(false)));
+            parameters.AddOptionalParameter("tpTriggerBy", positionModeIdx == null ? null : JsonConvert.SerializeObject(takeProfitTriggerType, new TriggerTypeConverter(false)));
+            parameters.AddOptionalParameter("slTriggerBy", positionModeIdx == null ? null : JsonConvert.SerializeObject(stopLossTriggerType, new TriggerTypeConverter(false)));
             parameters.AddOptionalParameter("slSize", stopLossSize?.ToString(CultureInfo.InvariantCulture));
             parameters.AddOptionalParameter("tpSize", takeProfitSize?.ToString(CultureInfo.InvariantCulture));
-            parameters.AddOptionalParameter("positionIdx", positionMode == null ? null : JsonConvert.SerializeObject(positionMode, new PositionModeConverter(false)));
+            parameters.AddOptionalParameter("positionIdx", positionModeIdx == null ? null : JsonConvert.SerializeObject(positionModeIdx, new PositionModeIdxConverter(false)));
             parameters.AddOptionalParameter("recv_window", receiveWindow?.ToString(CultureInfo.InvariantCulture) ?? _baseClient.ClientOptions.ReceiveWindow.TotalMilliseconds.ToString(CultureInfo.InvariantCulture));
 
             var result = await _baseClient.SendRequestAsync<object>(_baseClient.GetUrl("contract/v3/private/position/trading-stop"), HttpMethod.Post, ct, parameters, true).ConfigureAwait(false);

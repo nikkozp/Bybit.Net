@@ -26,10 +26,10 @@ namespace Bybit.Net.Interfaces.Clients.CopyTradingApi
         /// <para><a href="https://bybit-exchange.github.io/docs/copy_trading/#t-ct_positon_close" /></para>
         /// </summary>
         /// <param name="symbol">The symbol</param>
-        /// <param name="positionMode">Position mode</param>
+        /// <param name="positionModIdxe">Position mode</param>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
-        Task<WebCallResult> ClosePositionAsync(string symbol, PositionMode positionMode, CancellationToken ct = default);
+        Task<WebCallResult> ClosePositionAsync(string symbol, PositionModeIdx positionModeIdx, CancellationToken ct = default);
 
         /// <summary>
         /// Set leverage

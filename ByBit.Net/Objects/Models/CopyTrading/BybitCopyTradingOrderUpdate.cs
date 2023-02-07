@@ -88,7 +88,7 @@ namespace Bybit.Net.Objects.Models.CopyTrading
         /// Last executed fill price
         /// </summary>
         [JsonProperty("positionIdx")]
-        [JsonConverter(typeof(PositionModeConverter))]
-        public PositionMode PositionMode { get; set; }
+        [JsonConverter(typeof(PositionModeIdxConverter))]
+        public PositionModeIdx PositionModeIdx { get; set; }
     }
 }

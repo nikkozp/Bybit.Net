@@ -34,11 +34,11 @@ namespace Bybit.Net.Interfaces.Clients.DerivativesApi.ContractApi
         /// <param name="symbol">Symbol</param>
         /// <param name="side">Side</param>
         /// <param name="autoAddMargin">Auto add or not</param>
-        /// <param name="positionMode">Position mode</param>
+        /// <param name="positionModeIdx">Position mode</param>
         /// <param name="receiveWindow">The receive window for which this request is active. When the request takes longer than this to complete the server will reject the request</param>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
-        Task<WebCallResult> SetAutoAddMarginAsync(string symbol, OrderSide side, bool autoAddMargin, PositionMode? positionMode = null, long? receiveWindow = null, CancellationToken ct = default);
+        Task<WebCallResult> SetAutoAddMarginAsync(string symbol, OrderSide side, bool autoAddMargin, PositionModeIdx? positionModeIdx = null, long? receiveWindow = null, CancellationToken ct = default);
 
         /// <summary>
         /// Switch cross margin mode/isolated margin mode
@@ -95,11 +95,11 @@ namespace Bybit.Net.Interfaces.Clients.DerivativesApi.ContractApi
         /// </summary>
         /// <param name="symbol">The symbol</param>
         /// <param name="riskId">The risk id to set</param>
-        /// <param name="positionMode">Position mode</param>
+        /// <param name="positionModeIdx">Position mode</param>
         /// <param name="receiveWindow">The receive window for which this request is active. When the request takes longer than this to complete the server will reject the request</param>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
-        Task<WebCallResult> SetRiskLimitAsync(string symbol, long riskId, PositionMode? positionMode = null, long? receiveWindow = null, CancellationToken ct = default);
+        Task<WebCallResult> SetRiskLimitAsync(string symbol, long riskId, PositionModeIdx? positionModeIdx = null, long? receiveWindow = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get executed user trades

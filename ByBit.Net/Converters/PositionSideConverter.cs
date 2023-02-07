@@ -11,8 +11,8 @@ namespace Bybit.Net.Converters
 
         protected override List<KeyValuePair<PositionSide, string>> Mapping => new List<KeyValuePair<PositionSide, string>>
         {
-            new KeyValuePair<PositionSide, string>(PositionSide.Buy, "Buy"),
-            new KeyValuePair<PositionSide, string>(PositionSide.Sell, "Sell"),
+            new KeyValuePair<PositionSide, string>(PositionSide.Long, "Buy"),
+            new KeyValuePair<PositionSide, string>(PositionSide.Short, "Sell"),
             new KeyValuePair<PositionSide, string>(PositionSide.None, "None"),
         };
     }

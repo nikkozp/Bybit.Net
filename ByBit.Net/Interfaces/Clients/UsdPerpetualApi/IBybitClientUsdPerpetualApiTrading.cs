@@ -32,11 +32,11 @@ namespace Bybit.Net.Interfaces.Clients.UsdPerpetualApi
         /// <param name="stopLossPrice">Stop loss price, only take effect upon opening the position</param>
         /// <param name="takeProfitTriggerType">Take profit trigger price type, default: LastPrice</param>
         /// <param name="stopLossTriggerType">Stop loss trigger price type, default: LastPrice</param>
-        /// <param name="positionMode">Position mode</param>
+        /// <param name="positionModeIdx">Position mode</param>
         /// <param name="receiveWindow">The receive window for which this request is active. When the request takes longer than this to complete the server will reject the request</param>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
-        Task<WebCallResult<BybitUsdPerpetualOrder>> PlaceOrderAsync(string symbol, OrderSide side, OrderType type, decimal quantity, TimeInForce timeInForce, bool reduceOnly, bool closeOnTrigger, decimal? price = null, string? clientOrderId = null, decimal? takeProfitPrice = null, decimal? stopLossPrice = null, TriggerType? takeProfitTriggerType = null, TriggerType? stopLossTriggerType = null, PositionMode? positionMode = null, long? receiveWindow = null, CancellationToken ct = default);
+        Task<WebCallResult<BybitUsdPerpetualOrder>> PlaceOrderAsync(string symbol, OrderSide side, OrderType type, decimal quantity, TimeInForce timeInForce, bool reduceOnly, bool closeOnTrigger, decimal? price = null, string? clientOrderId = null, decimal? takeProfitPrice = null, decimal? stopLossPrice = null, TriggerType? takeProfitTriggerType = null, TriggerType? stopLossTriggerType = null, PositionModeIdx? positionModeIdx = null, long? receiveWindow = null, CancellationToken ct = default);
 
         /// <summary>
         /// Change an exising order. Either orderId or clientOrderId should be provided

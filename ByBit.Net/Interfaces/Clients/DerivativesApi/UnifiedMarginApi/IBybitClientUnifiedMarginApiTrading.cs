@@ -32,7 +32,7 @@ namespace Bybit.Net.Interfaces.Clients.DerivativesApi.UnifiedMarginApi
         /// <param name="price">c</param>
         /// <param name="basePrice">It will be used to compare with the value of triggerPrice, to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order.</param>
         /// <param name="triggerPrice">Trigger price. If you're expecting the price to rise to trigger your conditional order, make sure triggerPrice more max(market price, basePrice) else, triggerPrice less min (market price, basePrice)</param>
-        /// <param name="positionMode">Position mode</param>
+        /// <param name="positionModeIdx">Position mode</param>
         /// <param name="triggerType">Trigger price type: Market price/Mark price</param>
         /// <param name="iv">Implied volatility, for options only; parameters are passed according to the real value; for example, for 10%, 0.1 is passed</param>
         /// <param name="clientOrderId">Client order id</param>
@@ -43,7 +43,7 @@ namespace Bybit.Net.Interfaces.Clients.DerivativesApi.UnifiedMarginApi
         /// <param name="receiveWindow">The receive window for which this request is active. When the request takes longer than this to complete the server will reject the request</param>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
-        Task<WebCallResult<BybitDerivativesOrderId>> PlaceOrderAsync(Category category, string symbol, OrderSide side, OrderType type, decimal quantity, TimeInForce timeInForce, decimal? price = null, decimal? basePrice = null, decimal? triggerPrice = null, PositionMode? positionMode = null, TriggerType? triggerType = null, decimal? iv = null, string? clientOrderId = null, decimal? takeProfitPrice = null, decimal? stopLossPrice = null, TriggerType? takeProfitTriggerType = null, TriggerType? stopLossTriggerType = null, bool? reduceOnly = null, bool? closeOnTrigger = null, bool? marketMakerProtection = null, long? receiveWindow = null, CancellationToken ct = default);
+        Task<WebCallResult<BybitDerivativesOrderId>> PlaceOrderAsync(Category category, string symbol, OrderSide side, OrderType type, decimal quantity, TimeInForce timeInForce, decimal? price = null, decimal? basePrice = null, decimal? triggerPrice = null, PositionModeIdx? positionModeIdx = null, TriggerType? triggerType = null, decimal? iv = null, string? clientOrderId = null, decimal? takeProfitPrice = null, decimal? stopLossPrice = null, TriggerType? takeProfitTriggerType = null, TriggerType? stopLossTriggerType = null, bool? reduceOnly = null, bool? closeOnTrigger = null, bool? marketMakerProtection = null, long? receiveWindow = null, CancellationToken ct = default);
 
         /// <summary>
         /// Change an exising order. Either orderId or clientOrderId should be provided

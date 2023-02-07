@@ -67,10 +67,6 @@ namespace Bybit.Net.Objects.Models.Socket
         [JsonProperty("tp_sl_mode"), JsonConverter(typeof(StopLossTakeProfitModeConverter))]
         public StopLossTakeProfitMode? TakeProfitStopLossMode { get; set; }
         /// <summary>
-        /// Mode
-        /// </summary>
-        public string? Mode { get; set; }
-        /// <summary>
         /// Is isolated
         /// </summary>
         public bool Isolated { get; set; }

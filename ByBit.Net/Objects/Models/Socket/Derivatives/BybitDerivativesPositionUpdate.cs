@@ -14,8 +14,8 @@ namespace Bybit.Net.Objects.Models.Socket.Derivatives
         /// <summary>
         /// Position mode
         /// </summary>
-        [JsonProperty("positionIdx"), JsonConverter(typeof(PositionModeConverter))]
-        public PositionMode PositionMode { get; set; }
+        [JsonProperty("positionIdx"), JsonConverter(typeof(PositionModeIdxConverter))]
+        public PositionModeIdx PositionModeIdx { get; set; }
 
         /// <summary>
         /// Risk id

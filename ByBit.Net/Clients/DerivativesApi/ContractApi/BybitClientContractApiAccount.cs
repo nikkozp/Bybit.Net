@@ -157,7 +157,7 @@ namespace Bybit.Net.Clients.DerivativesApi.ContractApi
         #region SetAutoAddMarginAsync
 
         /// <inheritdoc />
-        public async Task<WebCallResult> SetAutoAddMarginAsync(string symbol, OrderSide side, bool autoAddMargin, PositionMode? positionMode = null, long? receiveWindow = null, CancellationToken ct = default)
+        public async Task<WebCallResult> SetAutoAddMarginAsync(string symbol, OrderSide side, bool autoAddMargin, PositionModeIdx? positionModeIdx = null, long? receiveWindow = null, CancellationToken ct = default)
         {
             var parameters = new Dictionary<string, object>()
             {
@@ -166,7 +166,7 @@ namespace Bybit.Net.Clients.DerivativesApi.ContractApi
                 { "autoAddMargin", autoAddMargin ? 1 : 0 },
             };
 
-            parameters.AddOptionalParameter("positionIdx", positionMode == null ? null : JsonConvert.SerializeObject(positionMode, new PositionModeConverter(false)));
+            parameters.AddOptionalParameter("positionIdx", positionModeIdx == null ? null : JsonConvert.SerializeObject(positionModeIdx, new PositionModeIdxConverter(false)));
             parameters.AddOptionalParameter("recv_window", receiveWindow?.ToString(CultureInfo.InvariantCulture) ?? _baseClient.ClientOptions.ReceiveWindow.TotalMilliseconds.ToString(CultureInfo.InvariantCulture));
 
             var result = await _baseClient.SendRequestAsync<object>(_baseClient.GetUrl("contract/v3/private/position/set-auto-add-margin"), HttpMethod.Post, ct, parameters, true).ConfigureAwait(false);
@@ -258,7 +258,7 @@ namespace Bybit.Net.Clients.DerivativesApi.ContractApi
         #region SetRiskLimitAsync
 
         /// <inheritdoc />
-        public async Task<WebCallResult> SetRiskLimitAsync(string symbol, long riskId, PositionMode? positionMode = null, long? receiveWindow = null, CancellationToken ct = default)
+        public async Task<WebCallResult> SetRiskLimitAsync(string symbol, long riskId, PositionModeIdx? positionModeIdx = null, long? receiveWindow = null, CancellationToken ct = default)
         {
             var parameters = new Dictionary<string, object>()
             {
@@ -266,7 +266,7 @@ namespace Bybit.Net.Clients.DerivativesApi.ContractApi
                 { "riskId", riskId.ToString(CultureInfo.InvariantCulture) }
             };
 
-            parameters.AddOptionalParameter("positionIdx", positionMode == null ? null : JsonConvert.SerializeObject(positionMode, new PositionModeConverter(false)));
+            parameters.AddOptionalParameter("positionIdx", positionModeIdx == null ? null : JsonConvert.SerializeObject(positionModeIdx, new PositionModeIdxConverter(false)));
             parameters.AddOptionalParameter("recv_window", receiveWindow?.ToString(CultureInfo.InvariantCulture) ?? _baseClient.ClientOptions.ReceiveWindow.TotalMilliseconds.ToString(CultureInfo.InvariantCulture));
 
             var result = await _baseClient.SendRequestAsync<object>(_baseClient.GetUrl("/contract/v3/private/position/set-risk-limit"), HttpMethod.Post, ct, parameters, true).ConfigureAwait(false);

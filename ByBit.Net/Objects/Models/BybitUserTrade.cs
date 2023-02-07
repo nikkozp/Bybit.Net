@@ -65,7 +65,7 @@ namespace Bybit.Net.Objects.Models
         /// Remaining quantity
         /// </summary>
         [JsonProperty("leaves_qty")]
-        public decimal QuantityRemaining { get; set; }
+        public decimal QuantityNotFilled { get; set; }
         /// <summary>
         /// The sequence of the transaction in this cross sequence data package
         /// </summary>

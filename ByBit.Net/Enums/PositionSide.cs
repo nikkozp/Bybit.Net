@@ -8,11 +8,11 @@
         /// <summary>
         /// Buy
         /// </summary>
-        Buy,
+        Long,
         /// <summary>
         /// Sell
         /// </summary>
-        Sell,
+        Short,
         /// <summary>
         /// None
         /// </summary>

@@ -43,7 +43,7 @@ namespace Bybit.Net.Clients.UsdPerpetualApi
             decimal? stopLossPrice = null,
             TriggerType? takeProfitTriggerType = null,
             TriggerType? stopLossTriggerType = null,
-            PositionMode? positionMode = null,
+            PositionModeIdx? positionModeIdx = null,
             long? receiveWindow = null,
             CancellationToken ct = default)
         {
@@ -64,7 +64,7 @@ namespace Bybit.Net.Clients.UsdPerpetualApi
             parameters.AddOptionalParameter("stop_loss", stopLossPrice?.ToString(CultureInfo.InvariantCulture));
             parameters.AddOptionalParameter("tp_trigger_by", takeProfitTriggerType == null ? null : JsonConvert.SerializeObject(takeProfitTriggerType, new TriggerTypeConverter(false)));
             parameters.AddOptionalParameter("sl_trigger_by", stopLossTriggerType == null ? null : JsonConvert.SerializeObject(stopLossTriggerType, new TriggerTypeConverter(false)));
-            parameters.AddOptionalParameter("position_idx", positionMode == null ? null : JsonConvert.SerializeObject(positionMode, new PositionModeConverter(false)));
+            parameters.AddOptionalParameter("position_idx", positionModeIdx == null ? null : JsonConvert.SerializeObject(positionModeIdx, new PositionModeIdxConverter(false)));
             parameters.AddOptionalParameter("recv_window", receiveWindow?.ToString(CultureInfo.InvariantCulture) ?? _baseClient.ClientOptions.ReceiveWindow.TotalMilliseconds.ToString(CultureInfo.InvariantCulture));
 
             return await _baseClient.SendRequestAsync<BybitUsdPerpetualOrder>(_baseClient.GetUrl("private/linear/order/create"), HttpMethod.Post, ct, parameters, true).ConfigureAwait(false);
@@ -228,10 +228,10 @@ namespace Bybit.Net.Clients.UsdPerpetualApi
             long? receiveWindow = null,
             CancellationToken ct = default)
         {
-            var parameters = new Dictionary<string, object>()
-            {
-                { "symbol", symbol },
-            };
+            var parameters = new Dictionary<string, object>();
+            //{
+            //    { "symbol", symbol },
+            //};
 
             parameters.AddOptionalParameter("recv_window", receiveWindow?.ToString(CultureInfo.InvariantCulture) ?? _baseClient.ClientOptions.ReceiveWindow.TotalMilliseconds.ToString(CultureInfo.InvariantCulture));
 

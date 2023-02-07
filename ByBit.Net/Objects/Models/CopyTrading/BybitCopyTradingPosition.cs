@@ -83,8 +83,8 @@ namespace Bybit.Net.Objects.Models.CopyTrading
         /// Position mode
         /// </summary>
         [JsonProperty("positionIdx")]
-        [JsonConverter(typeof(PositionModeConverter))]
-        public PositionMode PositionMode { get; set; }
+        [JsonConverter(typeof(PositionModeIdxConverter))]
+        public PositionModeIdx PositionModeIdx { get; set; }
         /// <summary>
         /// Creation time
         /// </summary>
