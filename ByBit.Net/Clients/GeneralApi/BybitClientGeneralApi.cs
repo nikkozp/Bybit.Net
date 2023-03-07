@@ -92,7 +92,7 @@ namespace Bybit.Net.Clients.GeneralApi
             => new TimeSyncInfo(_log, Options.AutoTimestamp, Options.TimestampRecalculationInterval, BybitClientInversePerpetualApi.TimeSyncState);
 
         /// <inheritdoc />
-        public override TimeSpan GetTimeOffset()
+        public override TimeSpan? GetTimeOffset()
             => BybitClientCopyTradingApi.TimeSyncState.TimeOffset;
     }
 }
