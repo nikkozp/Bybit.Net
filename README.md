@@ -1,11 +1,14 @@
 # Bybit.Net
-[![.NET](https://github.com/JKorf/Bybit.Net/actions/workflows/dotnet.yml/badge.svg)](https://github.com/JKorf/Bybit.Net/actions/workflows/dotnet.yml) ![Nuget version](https://img.shields.io/nuget/v/Bybit.net.svg)  ![Nuget downloads](https://img.shields.io/nuget/dt/Bybit.Net.svg)
+[![.NET](https://github.com/JKorf/Bybit.Net/actions/workflows/dotnet.yml/badge.svg)](https://github.com/JKorf/Bybit.Net/actions/workflows/dotnet.yml) [![Nuget version](https://img.shields.io/nuget/v/Bybit.net.svg)](https://www.nuget.org/packages/Bybit.Net)  [![Nuget downloads](https://img.shields.io/nuget/dt/Bybit.Net.svg)](https://www.nuget.org/packages/Bybit.Net)
  
 Bybit.Net is a wrapper around the Bybit API as described on [Bybit](https://bybit-exchange.github.io/docs/spot/#t-introduction), including all features the API provides using clear and readable objects, both for the REST  as the websocket API's.
 
 **If you think something is broken, something is missing or have any questions, please open an [Issue](https://github.com/JKorf/Bybit.Net/issues)**
 
 [Documentation](https://jkorf.github.io/Bybit.Net/)
+
+## Installation
+`dotnet add package Bybit.Net`
 
 ## Support the project
 I develop and maintain this package on my own for free in my spare time, any support is greatly appreciated.
@@ -17,9 +20,8 @@ Sign up using the following referral link to pay a small percentage of the tradi
 ### Donate
 Make a one time donation in a crypto currency of your choice. If you prefer to donate a currency not listed here please contact me.
 
-**Btc**:  12KwZk3r2Y3JZ2uMULcjqqBvXmpDwjhhQS  
-**Eth**:  0x069176ca1a4b1d6e0b7901a6bc0dbf3bb0bf5cc2  
-**Nano**: xrb_1ocs3hbp561ef76eoctjwg85w5ugr8wgimkj8mfhoyqbx4s1pbc74zggw7gs  
+**Btc**:  bc1qz0jv0my7fc60rxeupr23e75x95qmlq6489n8gh  
+**Eth**:  0x8E21C4d955975cB645589745ac0c46ECA8FAE504  
 
 ### Sponsor
 Alternatively, sponsor me on Github using [Github Sponsors](https://github.com/sponsors/JKorf). 
@@ -28,6 +30,148 @@ Alternatively, sponsor me on Github using [Github Sponsors](https://github.com/s
 A Discord server is available [here](https://discord.gg/MSpeEtSY8t). Feel free to join for discussion and/or questions around the CryptoExchange.Net and implementation libraries.
 
 ## Release notes
+* Version 3.3.0 - 19 Jan 2024
+    * Added V5Api.Account.GetBrokerEarningsAsync endpoint
+    * Added V5Api.Account.GetBrokerAccountInfoAsync endpoint
+    * Added V5Api.Account.GetInternalDepositsAsync endpoint
+    * Added V5Api.Account.SetMultipleCollateralAssetsAsync endpoint
+    * Added PricePercentageFilter to V5Api.ExchangeData.GetSpotSymbolsAsync model
+    * Updated various endpoint parameters and models
+
+* Version 3.2.7 - 16 Jan 2024
+    * Added V5Api.Account.SetCollateralAssetAsync endpoint
+    * Added marketUnit parameter to V5Api.Trading.PlaceOrderAsync endpoint
+    * Updated BybitAccountInfo model
+
+* Version 3.2.6 - 12 Dec 2023
+    * Fixed V5 BybitOrderId model ClientOrderId deserialization
+    * Added missing feeType parameter to V5 Account.WithdrawAsync endpoint
+
+* Version 3.2.5 - 03 Dec 2023
+    * Updated CryptoExchange.Net
+
+* Version 3.2.4 - 02 Dec 2023
+    * Added missing SelfMatchPreventType parameter to V5.Trading.PlaceOrderAsync
+    * Fixed deserialization issue in V5 UserTrade subscription
+
+* Version 3.2.3 - 28 Nov 2023
+    * Added missing FeeAsset property order updates
+    * Fixed UnifiedMarginStatus deserialization AccountInfo
+    * Fixed ClientOrderId deserialization batch order results
+
+* Version 3.2.2 - 30 Oct 2023
+    * Fixed triggerDirection parameter serialization on V5 PlaceOrder endpoint
+    * Fixed typo in BybitAccountTypeInfo model name
+
+* Version 3.2.1 - 24 Oct 2023
+    * Fix order parameter serialization
+    * Updated CryptoExchange.Net
+
+* Version 3.2.0 - 12 Oct 2023
+    * Added V5 SubAccount endpoints
+    * Added V5 ApiKey endpoints
+    * Added LeverageToken endpoints
+    * Added notice of deprecation to old endpoints
+    * Updated Referer header
+
+* Version 3.1.3 - 09 Oct 2023
+    * Updated CryptoExchange.Net version
+    * Fixed ReceiveWindow not respecting client option
+    * Updated BoolConverter to shared CryptoExchange.Net implementation
+
+* Version 3.1.2 - 29 Sep 2023
+    * Added V5 Inverse websocket API
+    * Fix V5 SubscribeToLiquidationUpdatesAsync
+    * Fix V5Api.Account.GetCollateralInfoAsync deserialization
+
+* Version 3.1.1 - 20 Sep 2023
+    * Added ISpotClient/CommonSpotClient implementation
+    * Added AddOrReduceMarginAsync endpoint
+    * Added Spot Margin endpoints
+
+* Version 3.1.0 - 05 Sep 2023
+    * Added V5 Trading.PlaceMultipleOrdersAsync, V5 Trading.EditMultipleOrdersAsync and V5 Trading.CancelMultipleOrdersAsync endpoints
+    * Fixed V5 Account.CreateUniversalTransferAsync parameter
+    * Fixed V5 Account.GetWithdrawalsAsync deserialization
+
+* Version 3.0.8 - 02 Sep 2023
+    * Fixed V5.Account.GetAssetBalanceAsync deserialization
+    * Added missing V5 Position model properties
+
+* Version 3.0.7 - 25 Aug 2023
+    * Updated CryptoExchange.Net
+
+* Version 3.0.6 - 25 Aug 2023
+    * Changed V5 API body content type from formdata to json
+
+* Version 3.0.5 - 05 Aug 2023
+    * Fixed default values V5 PlaceOrder parameters
+
+* Version 3.0.4 - 02 Aug 2023
+    * Removed incorrect checks for order id parameters in V5 trading endpoints
+    * Added Start/Endtime to V5 order history
+    * Added SL/TP parameters to V5 PlaceOrder endpoint
+    * Added SL/TP parameters to contract PlaceOrder endpoint
+    * Fixed nullability of position models
+
+* Version 3.0.3 - 25 Jul 2023
+    * Added missing MarginMode enum value
+    * Fix for position V5 deserialization
+
+* Version 3.0.2 - 23 Jul 2023
+    * Fixed AveragePrice not set on V5 position update
+    * Fixed multiple decimal field nullability
+    * Fixed V5 spot symbol MarginTrading incorrect property name
+    * Added missing tpslMode on V5 PlaceOrder
+    * Fixed typo in Deactivated V5 order status mapping
+    * Fixed incorrect filter types in V5 LinearInverse symbol model
+
+* Version 3.0.1 - 11 Jul 2023
+    * Fixed invalid V5 GetOrderHistory endpoint check
+    * Fixed bool parameters V5 PlaceOrder
+    * Removed Liquidation stream from V5 SpotApi
+
+* Version 3.0.0 - 25 Jun 2023
+    * Updated CryptoExchange.Net to version 6.0.0
+    * Renamed BybitClient to BybitRestClient
+    * Renamed **Streams to **Api on the BybitSocketClient
+    * Updated endpoints to consistently use a base url without any path as basis to make switching environments/base urls clearer
+    * Added IBybitOrderBookFactory and implementation for creating order books
+    * Updated dependency injection register method (AddBybit)
+    * Updated V5 socket API kline update topic to include the interval
+    * Added CopyTrading SetTradingStopAsync endpoint
+    * Fixed V5 GetMarginAccountInfoAsync endpoint
+
+* Version 2.0.5 - 19 Jun 2023
+    * Fixed V5 GetLinearInverseTickersAsync response model nullability
+    * Added missing parameters V5 SetTradingStopAsync
+    * Fixed incorrect V5 GetOrderAsync check
+
+* Version 2.0.4 - 02 Jun 2023
+    * Fixed deserialization error on V5 Inverse ticker model
+    * Fixed V5 GetOrder incorrect validation check
+
+* Version 2.0.3 - 22 May 2023
+    * Fixed category parameter not being send on V5 GetFreeRateAsync
+    * Fixed CreateTime deserialization on Spot V3 order model
+
+* Version 2.0.2 - 14 May 2023
+    * Fixed V5 GetTransactionHistory response model
+    * Fixed V5 Account Withdraw incorrect parameter name
+    * Fixed V5 Trading PlaceOrder incorrect position parameter
+
+* Version 2.0.1 - 25 Apr 2023
+    * Fixed V5.Account.CreateInternalTransfer endpoint
+
+* Version 2.0.0 - 14 Apr 2023
+    * Added V5 API implementation
+    * Fixed contract PlaceOrder parameters
+
+* Version 1.5.2 - 18 Mar 2023
+    * Fixed SpotV3 GetBalances
+    * Fixed SetPositionMode on contract API
+    * Updated CryptoExchange.Net
+
 * Version 1.5.1 - 14 Feb 2023
     * Updated CryptoExchange.Net
 

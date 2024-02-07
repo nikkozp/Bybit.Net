@@ -29,6 +29,21 @@ namespace Bybit.Net.Enums
         /// Copy trading account
         /// </summary>
         [Map("COPYTRADING")]
-        CopyTrading
+        CopyTrading,
+        /// <summary>
+        /// Option account
+        /// </summary>
+        [Map("OPTION")]
+        Option,
+        /// <summary>
+        /// Funding account
+        /// </summary>
+        [Map("FUND")]
+        Fund,
+        /// <summary>
+        /// Unified account
+        /// </summary>
+        [Map("UNIFIED")]
+        Unified,
     }
 }

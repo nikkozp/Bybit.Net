@@ -12,35 +12,21 @@ namespace Bybit.Net.UnitTests
     [TestFixture]
     public class JsonTests
     {
-        private JsonToObjectComparer<BybitClient> _comparer = new JsonToObjectComparer<BybitClient>((json) => TestHelpers.CreateResponseClient(json, new BybitClientOptions()
+        private JsonToObjectComparer<BybitRestClient> _comparer = new JsonToObjectComparer<BybitRestClient>((json) => TestHelpers.CreateResponseClient(json, x =>
         {
-            ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "123"),
-            LogLevel = Microsoft.Extensions.Logging.LogLevel.Trace,
-            SpotApiOptions = new CryptoExchange.Net.Objects.RestApiClientOptions
-            {
-                RateLimiters = new List<IRateLimiter>(),
-                OutputOriginalData = true
-            },
-            InverseFuturesApiOptions = new CryptoExchange.Net.Objects.RestApiClientOptions
-            {
-                RateLimiters = new List<IRateLimiter>(),
-                OutputOriginalData = true
-            },
-            InversePerpetualApiOptions = new CryptoExchange.Net.Objects.RestApiClientOptions
-            {
-                RateLimiters = new List<IRateLimiter>(),
-                OutputOriginalData = true
-            },
-            UsdPerpetualApiOptions = new CryptoExchange.Net.Objects.RestApiClientOptions
-            {
-                RateLimiters = new List<IRateLimiter>(),
-                OutputOriginalData = true
-            },
-            DerivativesApiOptions = new CryptoExchange.Net.Objects.RestApiClientOptions
-            {
-                RateLimiters = new List<IRateLimiter>(),
-                OutputOriginalData = true
-            }
+            x.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "123");
+            x.SpotOptions.RateLimiters = new List<IRateLimiter>();
+            x.SpotOptions.OutputOriginalData = true;
+            x.InverseFuturesOptions.RateLimiters = new List<IRateLimiter>();
+            x.InverseFuturesOptions.OutputOriginalData = true;
+            x.InversePerpetualOptions.RateLimiters = new List<IRateLimiter>();
+            x.InversePerpetualOptions.OutputOriginalData = true;
+            x.UsdPerpetualOptions.RateLimiters = new List<IRateLimiter>();
+            x.UsdPerpetualOptions.OutputOriginalData = true;
+            x.DerivativesOptions.RateLimiters = new List<IRateLimiter>();
+            x.DerivativesOptions.OutputOriginalData = true;
+            x.V5Options.RateLimiters = new List<IRateLimiter>();
+            x.V5Options.OutputOriginalData = true;
         },
             System.Net.HttpStatusCode.OK));
 
@@ -360,6 +346,60 @@ namespace Bybit.Net.UnitTests
                 ignoreProperties: new Dictionary<string, List<string>>
                 {
                 },
+                useNestedJsonPropertyForAllCompare: new List<string> { "result" }
+                );
+        }
+
+        [Test]
+        public async Task ValidateV5TradingCalls()
+        {
+            await _comparer.ProcessSubject("V5/Trading", c => c.V5Api.Trading,
+                useNestedJsonPropertyForCompare: new Dictionary<string, string>
+                {
+                    { "GetLeverageTokenOrderHistoryAsync", "list" }
+                },
+                ignoreProperties: new Dictionary<string, List<string>>
+                {
+                },
+                useNestedJsonPropertyForAllCompare: new List<string> { "result" }
+                );
+        }
+
+        [Test]
+        public async Task ValidateV5AccountCalls()
+        {
+            await _comparer.ProcessSubject("V5/Account", c => c.V5Api.Account,
+                useNestedJsonPropertyForCompare: new Dictionary<string, string>
+                {
+                    { "GetAccountTypesAsync", "accounts" }
+                },
+                ignoreProperties: new Dictionary<string, List<string>>
+                {
+                    { "AddOrReduceMarginAsync", new List<string>{ "category" } }
+                },
+                useNestedJsonPropertyForAllCompare: new List<string> { "result" }
+                );
+        }
+
+        [Test]
+        public async Task ValidateV5SubAccountCalls()
+        {
+            await _comparer.ProcessSubject("V5/SubAccount", c => c.V5Api.SubAccount,
+                useNestedJsonPropertyForCompare: new Dictionary<string, string>
+                {
+                    { "GetSubAccountsAsync", "subMembers" }
+                },
+                useNestedJsonPropertyForAllCompare: new List<string> { "result" }
+                );
+        }
+
+        [Test]
+        public async Task ValidateV5ExchangeDataCalls()
+        {
+            await _comparer.ProcessSubject("V5/ExchangeData", c => c.V5Api.ExchangeData,
+                useNestedJsonPropertyForCompare: new Dictionary<string, string> {
+                },
+                ignoreProperties: new Dictionary<string, List<string>> { },
                 useNestedJsonPropertyForAllCompare: new List<string> { "result" }
                 );
         }

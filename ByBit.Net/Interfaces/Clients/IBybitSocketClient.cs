@@ -6,6 +6,7 @@ using Bybit.Net.Interfaces.Clients.SpotApi.v1;
 using Bybit.Net.Interfaces.Clients.SpotApi.v2;
 using Bybit.Net.Interfaces.Clients.SpotApi.v3;
 using Bybit.Net.Interfaces.Clients.UsdPerpetualApi;
+using Bybit.Net.Interfaces.Clients.V5;
 using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Interfaces;
 
@@ -19,39 +20,59 @@ namespace Bybit.Net.Interfaces.Clients
         /// <summary>
         /// USD perpetual streams
         /// </summary>
-        public IBybitSocketClientUsdPerpetualStreams UsdPerpetualStreams { get; }
+        public IBybitSocketClientUsdPerpetualApi UsdPerpetualApi { get; }
         /// <summary>
         /// Spot streams v1
         /// </summary>
-        public IBybitSocketClientSpotStreamsV1 SpotStreamsV1 { get; }
+        public IBybitSocketClientSpotApiV1 SpotV1Api { get; }
         /// <summary>
         /// Spot streams v2
         /// </summary>
-        public IBybitSocketClientSpotStreamsV2 SpotStreamsV2 { get; }
+        public IBybitSocketClientSpotApiV2 SpotV2Api { get; }
         /// <summary>
         /// Spot streams v3
         /// </summary>
-        public IBybitSocketClientSpotStreamsV3 SpotStreamsV3 { get; }
+        public IBybitSocketClientSpotApiV3 SpotV3Api { get; }
         /// <summary>
         /// Inverse perpetual streams
         /// </summary>
-        public IBybitSocketClientInversePerpetualStreams InversePerpetualStreams { get; }
+        public IBybitSocketClientInversePerpetualApi InversePerpetualApi { get; }
         /// <summary>
         /// Copy trading streams
         /// </summary>
-        public IBybitSocketClientCopyTradingStreams CopyTrading { get; }
+        public IBybitSocketClientCopyTradingApi CopyTradingApi { get; }
         /// <summary>
         /// Derivatives public streams
         /// </summary>
-        public IBybitSocketClientDerivativesPublicStreams DerivativesPublic { get; }
+        public IBybitSocketClientDerivativesPublicApi DerivativesApi { get; }
         /// <summary>
         /// Unified margin private streams
         /// </summary>
-        public IBybitSocketClientUnifiedMarginStreams UnifiedMarginPrivate { get; }
+        public IBybitSocketClientUnifiedMarginApi UnifiedMarginApi { get; }
         /// <summary>
         /// Contract private streams
         /// </summary>
-        public IBybitSocketClientContractStreams ContractPrivate { get; }
+        public IBybitSocketClientContractApi ContractApi { get; }
+        /// <summary>
+        /// V5 Spot streams
+        /// </summary>
+        public IBybitSocketClientSpotApi V5SpotApi { get; }
+        /// <summary>
+        /// V5 Linear streams
+        /// </summary>
+        public IBybitSocketClientLinearApi V5LinearApi { get; }
+        /// <summary>
+        /// V5 Inverse contract streams
+        /// </summary>
+        public IBybitSocketClientInverseApi V5InverseApi { get; }
+        /// <summary>
+        /// V5 Option streams
+        /// </summary>
+        public IBybitSocketClientOptionApi V5OptionsApi { get; }
+        /// <summary>
+        /// V5 Private streams
+        /// </summary>
+        public IBybitSocketClientPrivateApi V5PrivateApi { get; }
 
         /// <summary>
         /// Set the API credentials for this client. All Api clients in this client will use the new credentials, regardless of earlier set options.
