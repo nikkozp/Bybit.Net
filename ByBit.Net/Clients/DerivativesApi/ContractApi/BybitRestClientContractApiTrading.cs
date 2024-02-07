@@ -42,7 +42,7 @@ namespace Bybit.Net.Clients.DerivativesApi.ContractApi
             };
 
             parameters.AddOptionalParameter("price", price?.ToString(CultureInfo.InvariantCulture));
-            parameters.AddOptionalParameter("positionIdx", positionModeIdx == null ? null : JsonConvert.SerializeObject(positionModeIdx, new PositionModeIdxConverter(false)));
+            parameters.AddOptionalParameter("positionIdx", positionMode == null ? null : JsonConvert.SerializeObject(positionMode, new PositionModeIdxConverter(false)));
 
             parameters.AddOptionalParameter("orderLinkId", clientOrderId);
             parameters.AddOptionalParameter("takeProfit", takeProfitPrice?.ToString(CultureInfo.InvariantCulture));
@@ -194,8 +194,8 @@ namespace Bybit.Net.Clients.DerivativesApi.ContractApi
             parameters.AddOptionalParameter("stopLoss", stopLossPrice?.ToString(CultureInfo.InvariantCulture));
             parameters.AddOptionalParameter("activePrice", activePrice?.ToString(CultureInfo.InvariantCulture));
             parameters.AddOptionalParameter("trailingStop", trailingStop?.ToString(CultureInfo.InvariantCulture));
-            parameters.AddOptionalParameter("tpTriggerBy", positionModeIdx == null ? null : JsonConvert.SerializeObject(takeProfitTriggerType, new TriggerTypeConverter(false)));
-            parameters.AddOptionalParameter("slTriggerBy", positionModeIdx == null ? null : JsonConvert.SerializeObject(stopLossTriggerType, new TriggerTypeConverter(false)));
+            parameters.AddOptionalParameter("tpTriggerBy", takeProfitTriggerType == null ? null : JsonConvert.SerializeObject(takeProfitTriggerType, new TriggerTypeConverter(false)));
+            parameters.AddOptionalParameter("slTriggerBy", stopLossTriggerType == null ? null : JsonConvert.SerializeObject(stopLossTriggerType, new TriggerTypeConverter(false)));
             parameters.AddOptionalParameter("slSize", stopLossSize?.ToString(CultureInfo.InvariantCulture));
             parameters.AddOptionalParameter("tpSize", takeProfitSize?.ToString(CultureInfo.InvariantCulture));
             parameters.AddOptionalParameter("tpslMode", EnumConverter.GetString(stopLossTakeProfitMode));
