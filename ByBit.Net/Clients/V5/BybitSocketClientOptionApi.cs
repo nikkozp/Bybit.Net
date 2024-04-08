@@ -46,7 +46,7 @@ namespace Bybit.Net.Clients.V5
                 var desResult = Deserialize<BybitOptionTickerUpdate>(internalData);
                 if (!desResult)
                 {
-                    _logger.Log(LogLevel.Warning, $"Failed to deserialize {nameof(BybitLinearTickerUpdate)} object: " + desResult.Error);
+                    _logger.Log(LogLevel.Warning, $"Failed to deserialize {nameof(BybitLinearInversTicker)} object: " + desResult.Error);
                     return;
                 }
 

@@ -35,11 +35,11 @@ namespace Bybit.Net.Clients.V5
 
 
         /// <inheritdoc />
-        public Task<CallResult<UpdateSubscription>> SubscribeToTickerUpdatesAsync(string symbol, Action<DataEvent<BybitLinearTickerUpdate>> handler, CancellationToken ct = default)
+        public Task<CallResult<UpdateSubscription>> SubscribeToTickerUpdatesAsync(string symbol, Action<DataEvent<BybitLinearInversTicker>> handler, CancellationToken ct = default)
             => SubscribeToTickerUpdatesAsync(new string[] { symbol }, handler, ct);
 
         /// <inheritdoc />
-        public async Task<CallResult<UpdateSubscription>> SubscribeToTickerUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<BybitLinearTickerUpdate>> handler, CancellationToken ct = default)
+        public async Task<CallResult<UpdateSubscription>> SubscribeToTickerUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<BybitLinearInversTicker>> handler, CancellationToken ct = default)
         {
             var internalHandler = new Action<DataEvent<JToken>>(data =>
             {
@@ -47,10 +47,10 @@ namespace Bybit.Net.Clients.V5
                 if (internalData == null)
                     return;
 
-                var desResult = Deserialize<BybitLinearTickerUpdate>(internalData);
+                var desResult = Deserialize<BybitLinearInversTicker>(internalData);
                 if (!desResult)
                 {
-                    _logger.Log(LogLevel.Warning, $"Failed to deserialize {nameof(BybitLinearTickerUpdate)} object: " + desResult.Error);
+                    _logger.Log(LogLevel.Warning, $"Failed to deserialize {nameof(BybitLinearInversTicker)} object: " + desResult.Error);
                     return;
                 }
 
