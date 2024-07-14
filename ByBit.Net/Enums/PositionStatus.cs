@@ -21,6 +21,11 @@ namespace Bybit.Net.Enums
         /// Auto deleverage
         /// </summary>
         [Map("Adl")]
-        AutoDeleverage
+        AutoDeleverage,
+        /// <summary>
+        /// Inactive
+        /// </summary>
+        [Map("Inactive")]
+        Inactive
     }
 }

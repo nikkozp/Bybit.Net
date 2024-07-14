@@ -1,5 +1,6 @@
 ﻿using Bybit.Net.Converters;
 using Bybit.Net.Enums;
+using Bybit.Net.Enums.V5;
 using CryptoExchange.Net.Converters;
 using Newtonsoft.Json;
 using System;
@@ -51,7 +52,9 @@ namespace Bybit.Net.Objects.Models.V5
         /// Position mode
         /// </summary>
         [JsonProperty("positionIdx")]
-        public PositionMode? PositionMode { get; set; }
+        [JsonConverter(typeof(EnumConverter))]
+        //public PositionIdx PositionIdx { get; set; }
+        public PositionIdx? PositionIdx { get; set; }
         /// <summary>
         /// Order status
         /// </summary>
@@ -81,7 +84,7 @@ namespace Bybit.Net.Objects.Models.V5
         /// Estimated value open
         /// </summary>
         [JsonProperty("leavesValue")]
-        public decimal? ValueRemaining { get; set; }
+        public decimal? QuoteQuantityRemaining { get; set; }
         /// <summary>
         /// Quantity filled
         /// </summary>
@@ -91,7 +94,7 @@ namespace Bybit.Net.Objects.Models.V5
         /// Value filled
         /// </summary>
         [JsonProperty("cumExecValue")]
-        public decimal? ValueFilled { get; set; }
+        public decimal? QuoteQuantityFilled { get; set; }
         /// <summary>
         /// Fee paid for filled quantity
         /// </summary>
