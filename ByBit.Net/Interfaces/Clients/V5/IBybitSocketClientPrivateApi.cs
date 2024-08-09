@@ -33,6 +33,15 @@ namespace Bybit.Net.Interfaces.Clients.V5
         Task<CallResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(Action<DataEvent<IEnumerable<BybitOrderUpdate>>> handler, CancellationToken ct = default);
 
         /// <summary>
+        /// Subscribe to minimal trade updates. There is less data available, but updates are pushed significantly faster
+        /// <para><a href="https://bybit-exchange.github.io/docs/v5/websocket/private/fast-execution" /></para>
+        /// </summary>
+        /// <param name="handler">Data handler</param>
+        /// <param name="ct">Cancellation token. Cancelling will cancel the subscription</param>
+        /// <returns></returns>
+        Task<CallResult<UpdateSubscription>> SubscribeToMinimalUserTradeUpdatesAsync(Action<DataEvent<IEnumerable<BybitMinimalUserTradeUpdate>>> handler, CancellationToken ct = default);
+
+        /// <summary>
         /// Subscribe to position updates
         /// <para><a href="https://bybit-exchange.github.io/docs/v5/websocket/private/position" /></para>
         /// </summary>

@@ -1,5 +1,6 @@
 ﻿using Bybit.Net.Converters;
 using Bybit.Net.Enums;
+using Bybit.Net.Enums.V5;
 using CryptoExchange.Net.Converters;
 using Newtonsoft.Json;
 using System;
@@ -68,6 +69,11 @@ namespace Bybit.Net.Objects.Models.V5
         /// Funding interval in minutes
         /// </summary>
         public int FundingInterval { get; set; }
+        /// <summary>
+        /// Funding interval in minutes
+        /// </summary>
+        [JsonConverter(typeof(EnumConverter))]
+        public CopyTradingType CopyTrading { get; set; }
 
         /// <summary>
         /// Lot size order filter
@@ -127,6 +133,16 @@ namespace Bybit.Net.Objects.Models.V5
         /// </summary>
         [JsonProperty("maxOrderQty")]
         public decimal MaxOrderQuantity { get; set; }
+        /// <summary>
+        /// Min notional
+        /// </summary>
+        [JsonProperty("minNotionalValue")]
+        public decimal MinNotional { get; set; }
+        /// <summary>
+        /// Max market order quantity
+        /// </summary>
+        [JsonProperty("maxMktOrderQty")]
+        public decimal MaxMarketQuantity { get; set; }
     }
 
     /// <summary>

@@ -29,7 +29,7 @@ namespace Bybit.Net.Objects.Models.V5
         /// Best ask price
         /// </summary>
         [JsonProperty("ask1Price")]
-        public decimal BestAskPrice { get; set; }
+        public decimal? BestAskPrice { get; set; }
         /// <summary>
         /// Best ask quantity
         /// </summary>

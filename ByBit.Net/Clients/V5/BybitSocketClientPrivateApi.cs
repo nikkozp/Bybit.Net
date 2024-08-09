@@ -61,6 +61,31 @@ namespace Bybit.Net.Clients.V5
         }
 
         /// <inheritdoc />
+        public async Task<CallResult<UpdateSubscription>> SubscribeToMinimalUserTradeUpdatesAsync(Action<DataEvent<IEnumerable<BybitMinimalUserTradeUpdate>>> handler, CancellationToken ct = default)
+        {
+            var internalHandler = new Action<DataEvent<JToken>>(data =>
+            {
+                var internalData = data.Data["data"];
+                if (internalData == null)
+                    return;
+
+                var desResult = Deserialize<IEnumerable<BybitMinimalUserTradeUpdate>>(internalData);
+                if (!desResult)
+                {
+                    _logger.Log(LogLevel.Warning, $"Failed to deserialize {nameof(BybitMinimalUserTradeUpdate)} object: " + desResult.Error);
+                    return;
+                }
+
+                handler(data.As(desResult.Data, data.Data["topic"]!.ToString().Split('.').Last()));
+            });
+
+            return await SubscribeAsync(
+                BaseAddress.AppendPath("/v5/private"),
+                new BybitV5RequestMessage("subscribe", new[] { "execution.fast" }, ExchangeHelpers.NextId().ToString()),
+                null, true, internalHandler, ct).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
         public async Task<CallResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(Action<DataEvent<IEnumerable<BybitUserTradeUpdate>>> handler, CancellationToken ct = default)
         {
             var internalHandler = new Action<DataEvent<JToken>>(data =>
