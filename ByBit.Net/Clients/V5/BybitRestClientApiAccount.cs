@@ -91,7 +91,7 @@ namespace Bybit.Net.Clients.V5
             string symbol,
             TradeMode tradeMode,
             decimal buyLeverage,
-            decimal sellLeverage,
+            decimal sellLeverage, 
             CancellationToken ct = default)
         {
             var parameters = new Dictionary<string, object>()

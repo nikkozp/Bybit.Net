@@ -38,5 +38,11 @@ namespace Bybit.Net.Objects.Models.V5
         /// Max leverage
         /// </summary>
         public decimal MaxLeverage { get; set; }
+
+        /// <summary>
+        /// The maintenance margin deduction value when risk limit tier changed
+        /// </summary>
+        [JsonProperty("mmDeduction")]
+        public decimal? MaintMarginDeduction { get; set; }
     }
 }
